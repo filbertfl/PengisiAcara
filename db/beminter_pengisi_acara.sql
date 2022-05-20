@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
@@ -6,6 +7,15 @@
 -- Generation Time: May 20, 2022 at 02:12 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
+=======
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 20, 2022 at 01:58 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
+>>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,6 +88,16 @@ CREATE TABLE `ukm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+<<<<<<< HEAD
+=======
+-- Dumping data for table `ukm`
+--
+
+INSERT INTO `ukm` (`id`, `nama`, `deskripsi`, `contact_person`, `foto`, `logo`) VALUES
+(1, 'aaaaa', 'aaaaa', 'aaa', 'aaaa', 'aaaa');
+
+--
+>>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
 -- Indexes for dumped tables
 --
 
@@ -131,7 +151,11 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `ukm`
 --
 ALTER TABLE `ukm`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
