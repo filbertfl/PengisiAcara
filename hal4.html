@@ -21,69 +21,74 @@
             border: 1px solid black;
         }
 
-        /* .accordion-button:not(.collapsed)::after {
-            background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
-            transform: rotate(-180deg);
+        .btn_status {
+            position: relative;
+            float: right;
+            top: -45px;
+            left: -50px;
+            z-index: 99;
         }
-        .accordion-button::after {
-            flex-shrink: 0;
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-left: auto;
-            content: "";
-            background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
-            background-repeat: no-repeat;
-            background-size: 1.25rem;
-            transition: transform .2s ease-in-out;
-        } */
     </style>
 </head>
 
 <body>
     <div id="isi_hal4" class="container">
         <div class="mt-3 accordion" id="accordionExample">
-            <div class="mb-3 accordion-item">
+
+            <div class="mb-5 accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Request untuk UKM Dance 
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ex accusantium eum minus magni nesciunt consequatur nulla, saepe cumque sapiente! Dolor placeat commodi incidunt dolores nam deleniti voluptatum, perferendis provident?
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3 accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Request untuk UKM 
+                        data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Request untuk UKM Dance
                     </button>
+                    <button type="button" class="btn btn-danger btn_status">Danger</button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, maxime. Odio, modi similique inventore expedita maiores quasi recusandae, magnam iusto nemo porro totam doloribus adipisci cum minus earum dolore. Atque!
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ex accusantium eum minus magni
+                        nesciunt consequatur nulla, saepe cumque sapiente! Dolor placeat commodi incidunt dolores nam
+                        deleniti voluptatum, perferendis provident?
                     </div>
                 </div>
             </div>
-            <div class="mb-3 accordion-item">
-                <h2 class="accordion-header" id="headingThree">
+
+            <div class="mb-5 accordion-item">
+                <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Request untuk UKM
+                        data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                        Request untuk UKM Dance
                     </button>
+                    <button type="button" class="btn btn-danger btn_status">Danger</button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur iusto voluptate corporis repellendus, rerum exercitationem commodi consectetur asperiores nam dolores veritatis, accusantium earum aliquid maxime quas quisquam laboriosam hic aperiam.
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ex accusantium eum minus magni
+                        nesciunt consequatur nulla, saepe cumque sapiente! Dolor placeat commodi incidunt dolores nam
+                        deleniti voluptatum, perferendis provident?
                     </div>
                 </div>
             </div>
+
+            <div class="mb-5 accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                        Request untuk UKM Dance
+                    </button>
+                    <button type="button" class="btn btn-danger btn_status">Danger</button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ex accusantium eum minus magni
+                        nesciunt consequatur nulla, saepe cumque sapiente! Dolor placeat commodi incidunt dolores nam
+                        deleniti voluptatum, perferendis provident?
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
