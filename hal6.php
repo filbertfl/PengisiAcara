@@ -1,7 +1,26 @@
-<html lang="en">
-
 <?php
+// session_start();
 include 'connect.php';
+include 'navbar.html';
+
+$nrp = $_SESSION["nrp"];
+$stmt = $pdo->query("SELECT * FROM `admin` WHERE `nrp` LIKE '$nrp'");
+if($row = $stmt->fetch()){
+    // echo $nrp.' logged in';
+    $id_ukm = $row['id_ukm'];
+}else{
+    header('Location: index.php');
+}
+
+$stmt = $pdo->query("SELECT * FROM `ukm` WHERE `id` = $id_ukm");
+if($row = $stmt->fetch()){
+    $nama_ukm = $row['nama'];
+    $old_contact_person = $row['contact_person'];
+    $old_deskripsi = $row['deskripsi'];
+    $old_foto = $row['foto'];
+    $old_logo = $row['logo'];
+}
+
 if(isset($_POST['submit'])){
     $file_batch='';
     $countfiles = count($_FILES['file']['name']);
@@ -12,7 +31,6 @@ if(isset($_POST['submit'])){
     }
 
     // $ukm = $_POST['ukm'];
-    $ukm = $_POST['ukm'];
     $deskripsi = $_POST['deskripsi'];
     $kontak = $_POST['kontak'];
 
@@ -21,11 +39,13 @@ if(isset($_POST['submit'])){
     move_uploaded_file($_FILES['logo']['tmp_name'],'upload/'.$filename); 
     $logo = 'upload/'.$filename;
 
-    $sql = "INSERT INTO `ukm`(`id`, `nama`, `deskripsi`, `contact_person`, `foto`, `logo`) VALUES (NULL,'$ukm','$deskripsi','$kontak','$file_batch','$logo')";
-    $pdo->query($sql);
+    // $sql = "INSERT INTO `ukm`(`id`, `nama`, `deskripsi`, `contact_person`, `foto`, `logo`) VALUES (NULL,'$ukm','$deskripsi','$kontak','$file_batch','$logo')";
 
+    $sql = "UPDATE `ukm` SET `deskripsi`='$deskripsi',`contact_person`='$kontak',`foto`='$file_batch',`logo`='$logo' WHERE  `id`=$id_ukm";
+    $pdo->query($sql);
 }
 ?>
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -59,28 +79,28 @@ if(isset($_POST['submit'])){
             <div class="row">
                 <div class="mb-3 col-2">
                     <label for="exampleFormControlInput1" class="form-label">Nama UKM</label>
-                    <input type="text" class="form-control" id="namaUKM" value="UKM DANCE" name="ukm" require>
+                    <input type="text" class="form-control" id="namaUKM" value="<?php echo $nama_ukm;?>" name="ukm" disabled>
                 </div>
                 <div class="mb-3 col-3">
                     <label for="exampleFormControlInput1" class="form-label">Contact Person (Line ID)</label>
-                    <input name="kontak" type="text" class="form-control" id="contact" require>
+                    <input name="kontak" type="text" class="form-control" value="<?php echo $old_contact_person;?>" id="contact" Required>
                 </div>
             </div>
 
             <div class="mb-3 col-12">
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                 <textarea maxlength="250" name="deskripsi" style="height: 250px;" class="form-control" id="exampleFormControlTextarea1"
-                    rows="3"></textarea>
+                    rows="3"><?php echo $old_deskripsi;?></textarea>
             </div>
 
             <div class="row">
                 <div class="mb-3 col-12 col-md-6">
                     <label class="form-label">Foto</label>
-                    <input  class="form-control" type="file" name="file[]" id="file" multiple require>
+                    <input class="form-control" type="file" name="file[]" id="file" multiple Required>
                 </div>
                 <div class="mb-3 col-12 col-md-6">
                     <label class="form-label">Logo UKM</label>
-                    <input name="logo" class="form-control" type="file" require>
+                    <input name="logo" class="form-control" type="file" Required>
                 </div>
             </div>
 

@@ -1,6 +1,8 @@
 <?php 
+// session_start();
 include "connect.php";
 include "navbar.html";
+$_SESSION["nrp"] = "C14200184";
 
 // $sql = "INSERT INTO `ukm`(`id`, `nama`, `deskripsi`, `contact_person`, `foto`) VALUES (NULL,"UKM Dance","Kita bisa menari kok!","filbert05","/img/a.png")";
 // $pdo->exec($sql);
