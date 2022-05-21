@@ -37,8 +37,16 @@ include "navbar.html";
 
     .card {
       margin: 0px;
-      width: 100vw;
       margin-bottom: 10px;
+    }
+
+    img{
+      object-fit: contain;
+      max-height: 20rem;
+    }
+    video{
+      object-fit: contain;
+      max-height: 20rem;
     }
   }
 
@@ -56,11 +64,24 @@ include "navbar.html";
       width: 25rem;
     }
 
+    .carousel-item{
+      max-height: 20rem;
+    }
+
+    img{
+      object-fit: contain;
+      max-height: 20rem;
+    }
+    video{
+      object-fit: contain;
+      max-height: 20rem;
+    }
+
   }
 </style>
 
 <body>
-  <div class="fluid container menu" style="row-gap: 15px;">
+  <div class="container menu" style="row-gap: 15px;">
     <?php
     $stmt = $pdo->query("SELECT * FROM `ukm` WHERE 1");
     while ($row = $stmt->fetch()) {
@@ -88,13 +109,16 @@ include "navbar.html";
         </div>
         <div class="card-body">
           <p class="card-text">'.$deskripsi.'</p>
-          <p class="card-text">☎️ : '.$contact.'</p>
+          <p class="card-text">☎️ (LINE) : '.$contact.'</p>
 
           <div id="carouselExampleIndicators'.$id.'" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-            ';
+            <center>';
+            
             //carousell inner 
-            $card2= '</div>
+            $card2= '
+            </center>
+            </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators'.$id.'"
               data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -115,11 +139,25 @@ include "navbar.html";
       ';
       echo $card1;
       $tags = explode(';',$foto);
-        echo '<div class="carousel-item active"> <img src="'.$tags[0].'" class="d-block w-100" alt="..."> </div>';
-        unset($tags[0]);
+      unset($tags[0]);
+      
+      $checkExt = explode('.',$tags[1]);
+      if ($checkExt[1]=="mp4"){
+        echo '
+        <div class="carousel-item active"> 
+        <video controls id="video" autoplay="true" loop="loop" preload="auto">
+        <source src="'.$tags[1].'"  type="video/mp4">
+        </video>
+        </div>';
+      }else{
+        echo '<div class="carousel-item active"> <img src="'.$tags[1].'" class="d-block w-100" alt="..."> </div>';
+      }
+      unset($tags[1]);
+
       foreach($tags as $key) {    
         echo '<div class="carousel-item"> <img src="'.$key.'" class="d-block w-100" alt="..."> </div>';
       };
+
       echo $card2;
     }
     ?>
