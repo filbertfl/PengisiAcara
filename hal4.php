@@ -1,9 +1,7 @@
 <?php
     include "connect.php";
 
-    $id_panitia = 2;
-
-    $stmt = $pdo->query("SELECT * FROM `request` WHERE id_panitia = $id_panitia");
+    $id_panitia = 1;
 ?>
 
 <!doctype html>
@@ -51,7 +49,9 @@
     <div id="isi_hal4" class="container">
         <div class="mt-3 accordion" id="accordionExample">
             <?php 
+            $stmt = $pdo->query("SELECT * FROM `request` WHERE id_panitia = $id_panitia");
             while ($row = $stmt->fetch()) {
+                $id = $row["id"];
                 $date_time = $row["date_time"];
                 $request_info = $row["request_info"];
                 $status = $row["status"];
@@ -65,7 +65,7 @@
             <div class="mb-5 accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        data-bs-target="#collapse<?php echo $id; ?>" aria-expanded="true" aria-controls="collapse1">
                         <div class="row" style="width: 100%;">
                             <div class="col-12 col-md-6">
                                 Request untuk <b><?php echo $nama_ukm ?></b>
@@ -83,7 +83,7 @@
                     <button type="button" class="btn btn-warning btn_status" disabled>Pending</button>
                     <?php } ?>
                 </h2>
-                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                <div id="collapse<?php echo $id; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <?php echo $request_info; ?>
