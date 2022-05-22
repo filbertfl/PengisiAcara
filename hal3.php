@@ -10,18 +10,18 @@ include "connect.php";
 // HAL 3
 // $id_panitia = $SESSION['id'];
 
-$id_ukm = $_GET["id_ukm"];
-echo 'id ukm : '.$id_ukm;
+// $id_ukm = $_GET["id_ukm"];
+// echo 'id ukm : '.$id_ukm;
 
-// $id_panitia = 0;
-// $id_ukm = 1;
+$id_panitia = 0;
+$id_ukm = 1;
 
 if(isset($_POST['submit_button'])){
     $request_info = $_POST['request_info'];
-    // $request_info = $_POST['request_info'];
-    // $request_info = $_POST['request_info'];
+    $link_drive = $_POST['link_drive'];
+    $date = $_POST['date'];
     echo "success";
-    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`,`link`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'1000-01-01 00:00:00','$request_info','gdrive',0,$id_ukm,$id_panitia)";
+    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`,`link`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info','$link_drive',0,$id_ukm,$id_panitia)";
     $pdo->exec($sql);
 
 }
@@ -40,20 +40,44 @@ if(isset($_POST['submit_button'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Pengisi Acara!</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+      .container{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    .form{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .form-group{
+        margin: 10px;
+        width: 50vw;
+    }
+
+    .btn{
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+
+    </style>
   </head>
   <body>
 
     <div class="container">
-        <form action="#" method="POST">
+        <form action="#" method="POST" class="form">
             <div class="form-row">
-              <div class="form-group col-md-6">
+              <div class="form-group">
                 <label for="inputnama">Nama Pengisi Acara</label>
-                <input name="nama_pengisi_acara"  type="nama" class="form-control" id="inputnama" placeholder="Nama Pengisi Acara" value="<?php  echo 'nama_UKM!' ?>" disabled>
+                <input name="nama_pengisi_acara"  type="nama" class="form-control" id="inputnama" placeholder="Nama Pengisi Acara">
               </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group">
                     <label class="control-label requiredField" for="date">
                     Tanggal Acara
                     </label>
@@ -62,9 +86,13 @@ if(isset($_POST['submit_button'])){
                     </div>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group">
                 <label for="exampleFormControlTextarea1">Request Info</label>
                 <textarea name="request_info" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">Link Drive</label>
+                <input name="link_drive" class="form-control" id="link-drive">
             </div>
             <button name="submit_button" type="submit" class="btn btn-primary">Request</button>
         </form>
