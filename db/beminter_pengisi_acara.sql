@@ -1,21 +1,11 @@
 -- phpMyAdmin SQL Dump
-<<<<<<< HEAD
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 02:12 PM
+-- Generation Time: May 22, 2022 at 01:14 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
-=======
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 01:58 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
->>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,10 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `nrp` varchar(100) NOT NULL,
   `id_ukm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `nrp`, `id_ukm`) VALUES
+(1, 'C14200184', 2);
 
 -- --------------------------------------------------------
 
@@ -88,16 +84,21 @@ CREATE TABLE `ukm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
-<<<<<<< HEAD
-=======
 -- Dumping data for table `ukm`
 --
 
 INSERT INTO `ukm` (`id`, `nama`, `deskripsi`, `contact_person`, `foto`, `logo`) VALUES
-(1, 'aaaaa', 'aaaaa', 'aaa', 'aaaa', 'aaaa');
+(1, 'UKM Dance', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(2, 'UKM Paduan Suara', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(3, 'UKM Dekorasi', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(4, 'UKM Teater', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(5, 'UKM Vocal Group', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(6, 'UKM Ilustrasi', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(7, 'UKM Martografi', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(8, 'UKM Modeling', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png'),
+(9, 'UKM Club Orchestra', 'Insert Description Here...', 'Insert Contact Here...', ';upload/blank.png', 'upload/blank.png');
 
 --
->>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
 -- Indexes for dumped tables
 --
 
@@ -133,7 +134,7 @@ ALTER TABLE `ukm`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `panitia`
@@ -151,11 +152,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `ukm`
 --
 ALTER TABLE `ukm`
-<<<<<<< HEAD
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> f36302d12a691c86412a7f0946f5437bb73cfbfd
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
