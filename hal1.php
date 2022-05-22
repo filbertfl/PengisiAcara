@@ -3,7 +3,7 @@
 
     if (isset($_GET["stat"])) {
         if ($_GET["stat"] == 1) {
-            echo "<script>alert('Data anda berhasil tersimpan. Bila ada kesalahan dalam memasukkan data silahkan hubungi kadept mss.')</script>";
+            echo "<script>alert('Data anda berhasil tersimpan.')</script>";
         }
     }
 
