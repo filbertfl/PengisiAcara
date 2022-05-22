@@ -12,7 +12,8 @@
         $contact_panitia = $_POST["kontak"];
         $deskripsi_panitia = $_POST["deskripsi"];
 
-        $sql_insert = "INSERT INTO `panitia`(`id`, `nama_panitia`, `deskripsi_panitia`, `contact_person`) VALUES (NULL, '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
+        $sql_insert = "INSERT INTO `panitia`(`id`, `nama_panitia`, `deskripsi_panitia`, `contact_person`) 
+        VALUES (NULL, '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
         $pdo->exec($sql_insert);
 
         header("Location: ../hal1.php?stat=1");
@@ -39,7 +40,7 @@
         <form action="#" method="POST">
             <div class="mt-3 row">
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label">Nama Acara</label>
+                    <label class="form-label">Nama Acara Panitia</label>
                     <input type="text" class="form-control" name="nama">
                 </div>
                 <div class="mb-3 col-12 col-md-6">
