@@ -21,8 +21,10 @@ if(isset($_POST['submit_button'])){
     $link_drive = $_POST['link_drive'];
     $date = $_POST['date'];
     echo "success";
-    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`,`link`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info','$link_drive',0,$id_ukm,$id_panitia)";
+    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info',0,$id_ukm,$id_panitia)";
     $pdo->exec($sql);
+
+    
 
 }
 
@@ -39,7 +41,7 @@ if(isset($_POST['submit_button'])){
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Pengisi Acara!</title>
+    <title>Request Pengisi Acara!</title>
     <style>
 
       .container{
@@ -73,7 +75,13 @@ if(isset($_POST['submit_button'])){
             <div class="form-row">
               <div class="form-group">
                 <label for="inputnama">Nama Pengisi Acara</label>
-                <input name="nama_pengisi_acara"  type="nama" class="form-control" id="inputnama" placeholder="Nama Pengisi Acara">
+               <?php 
+                    $stmt_ukm = $pdo->query("SELECT * FROM `ukm` WHERE id = $id_ukm");
+                    while ($row_ukm = $stmt_ukm->fetch()){
+                    $nama_ukm = $row_ukm["nama"];
+                   }
+                   ?>
+                <input name="nama_pengisi_acara"  type="nama" class="form-control" id="inputnama" placeholder="Nama Pengisi Acara" value="<?php echo $nama_ukm?>" disabled>
               </div>
             </div>
             <div class="form-row">
@@ -89,10 +97,6 @@ if(isset($_POST['submit_button'])){
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Request Info</label>
                 <textarea name="request_info" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea2">Link Drive</label>
-                <input name="link_drive" class="form-control" id="link-drive">
             </div>
             <button name="submit_button" type="submit" class="btn btn-primary">Request</button>
         </form>
