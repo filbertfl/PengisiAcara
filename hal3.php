@@ -10,8 +10,8 @@ include "connect.php";
 // HAL 3
 // $id_panitia = $SESSION['id'];
 
-// $id_ukm = $_GET["id_ukm"];
-// echo 'id ukm : '.$id_ukm;
+$id_ukm = $_GET["id_ukm"];
+echo 'id ukm : '.$id_ukm;
 
 $id_panitia = 0;
 $id_ukm = 1;
@@ -21,7 +21,7 @@ if(isset($_POST['submit_button'])){
     $link_drive = $_POST['link_drive'];
     $date = $_POST['date'];
     echo "success";
-    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`,`link`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info','$link_drive',0,$id_ukm,$id_panitia)";
+    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info',0,$id_ukm,$id_panitia)";
     $pdo->exec($sql);
 
 }
