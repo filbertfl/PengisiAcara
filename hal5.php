@@ -1,3 +1,6 @@
+<?php
+include 'connect.php';
+    ?>
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +28,8 @@
 
 <body>
     <div id="isi_hal4" class="container">
-        <?php
+        <!-- <form method='post' action='' enctype='multipart/form-data'> -->
+            <?php
         $id_ukm = 1;
 
         $stmt = $pdo->query("SELECT * FROM `request` WHERE `id_ukm` = $id_ukm");
@@ -34,37 +38,63 @@
             $date_time = $row["date_time"];
             $request_info = $row["request_info"];
             $status = $row["status"];
-            $id_ukm = $row["id_ukm"];
+            $id_panitia = $row["id_panitia"];
+            
 
-            $stmt_ukm = $pdo->query("SELECT * FROM `panitia` WHERE id = $id_panitia");
-            while ($row_ukm = $stmt_ukm->fetch()){
-                $nama_ukm = $row_ukm["nama"];
-            } 
-        }
+        $stmt_2 = $pdo->query("SELECT * FROM `panitia` WHERE id = $id_panitia");
+        while ($row_2 = $stmt_2->fetch()){
+            $nama_panitia = $row_2["nama_panitia"];
+        } 
         ?>
-        <div class="mt-3 accordion" id="accordionExample">
-            <div class="mb-3 accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Request dari Panitia Spetrakuler
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ex accusantium eum minus magni
-                        nesciunt consequatur nulla, saepe cumque sapiente! Dolor placeat commodi incidunt dolores nam
-                        deleniti voluptatum, perferendis provident?
-                    </div>
-                    <div style="padding: 20px;">
-                        <button type="submit" class="btn btn-success">Accept</button>
-                        <button type="submit" class="btn btn-danger">Deny</button>
+            <div class="mt-3 accordion" id="accordionExample">
+                <div class="mb-3 accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<?php echo $id; ?>" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <div class="row" style="width: 100%;">
+                                <div class="col-12 col-md-6">
+                                    Request dari <b><?php echo $nama_panitia ?></b>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <?php echo $date_time ?>
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse<?php echo $id; ?>" class="accordion-collapse collapse"
+                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <?php
+                        echo $request_info;
+                        ?>
+                        </div>
+                        <div style="padding: 20px;">
+                            <?php
+                    if($status == 3){
+                        echo '
+                        <a href="request_php.php?id='.$id.'&status=2" style="text-decoration:none">
+                            <button class="btn btn-success">Accept</button>
+                        </a>
+                        <a href="request_php.php?id='.$id.'&status=1" style="text-decoration:none">
+                            <button class="btn btn-danger">Deny</button>
+                        </a>
+                        ';
+                    }elseif ($status == 1) {
+                        echo '<button type="button" class="btn btn-danger btn_status" disabled>Declined</button>';
+                    }elseif ($status == 2) {
+                        echo '<button type="button" class="btn btn-success btn_status" disabled>Accepted</button>';
+                    }
+                    ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <?php
+        }
+        ?>
+        <!-- </form> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
