@@ -90,10 +90,6 @@ if(isset($_POST['submit_button'])){
                 <label for="exampleFormControlTextarea1">Request Info</label>
                 <textarea name="request_info" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea2">Link Drive</label>
-                <input name="link_drive" class="form-control" id="link-drive">
-            </div>
             <button name="submit_button" type="submit" class="btn btn-primary">Request</button>
         </form>
     </div>
