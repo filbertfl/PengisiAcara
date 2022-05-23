@@ -14,7 +14,7 @@ include "connect.php";
 // echo 'id ukm : '.$id_ukm;
 
 $id_panitia = 0;
-$id_ukm = 1;
+$id_ukm = 2;
 
 if(isset($_POST['submit_button'])){
     $request_info = $_POST['request_info'];
@@ -23,9 +23,6 @@ if(isset($_POST['submit_button'])){
     echo "success";
     $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info',0,$id_ukm,$id_panitia)";
     $pdo->exec($sql);
-
-    
-
 }
 
 
@@ -78,7 +75,7 @@ if(isset($_POST['submit_button'])){
                <?php 
                     $stmt_ukm = $pdo->query("SELECT * FROM `ukm` WHERE id = $id_ukm");
                     while ($row_ukm = $stmt_ukm->fetch()){
-                    $nama_ukm = $row_ukm["nama"];
+                    $nama_ukm = $row_ukm['nama'];
                    }
                    ?>
                 <input name="nama_pengisi_acara"  type="nama" class="form-control" id="inputnama" placeholder="Nama Pengisi Acara" value="<?php echo $nama_ukm?>" disabled>
