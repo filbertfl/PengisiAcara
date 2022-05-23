@@ -43,7 +43,7 @@ include 'connect.php';
 
         $stmt_2 = $pdo->query("SELECT * FROM `panitia` WHERE id = $id_panitia");
         while ($row_2 = $stmt_2->fetch()){
-            $nama_panitia = $row_2["nama_panitia"];
+            $nama_panitia = $row_2["nama_kepanitiaan"];
         } 
         ?>
             <div class="mt-3 accordion" id="accordionExample">

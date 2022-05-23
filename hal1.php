@@ -12,11 +12,11 @@
         $contact_panitia = $_POST["kontak"];
         $deskripsi_panitia = $_POST["deskripsi"];
 
-        $sql_insert = "INSERT INTO `panitia`(`id`, `nama_panitia`, `deskripsi_panitia`, `contact_person`) 
+        $sql_insert = "INSERT INTO `panitia`(`id`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
         VALUES (NULL, '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
         $pdo->exec($sql_insert);
 
-        header("Location: ../hal1.php?stat=1");
+        header("Location: hal1.php?stat=1");
     }
 ?>
 
