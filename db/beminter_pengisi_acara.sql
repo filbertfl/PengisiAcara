@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2022 at 01:14 PM
+-- Generation Time: May 24, 2022 at 05:19 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `nrp` varchar(100) NOT NULL,
-  `id_ukm` int(11) NOT NULL
+  `id_ukm` int(11) DEFAULT NULL COMMENT 'NULL = AnC;\r\n1 - 9 = UKM'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -48,10 +48,21 @@ INSERT INTO `admin` (`id`, `nrp`, `id_ukm`) VALUES
 
 CREATE TABLE `panitia` (
   `id` int(11) NOT NULL,
-  `nama_panitia` varchar(64) NOT NULL,
+  `nrp` varchar(16) NOT NULL,
+  `nama_kepanitiaan` varchar(64) NOT NULL,
   `deskripsi_panitia` varchar(1000) NOT NULL,
   `contact_person` varchar(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `panitia`
+--
+
+INSERT INTO `panitia` (`id`, `nrp`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) VALUES
+(1, 'C14200185', 'SPETRA', 'desc', 'contact'),
+(2, 'panitia2', 'ITEM', 'desc', 'contact 2'),
+(3, 'panitia3', 'IRGL', 'desc', 'irgl'),
+(5, 'nrp_contoh', 'aa', 'a', 'aa');
 
 -- --------------------------------------------------------
 
@@ -67,6 +78,14 @@ CREATE TABLE `request` (
   `id_ukm` int(11) NOT NULL,
   `id_panitia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES
+(1, '2022-05-22 14:02:37', 'wqdqwed', '2', 1, 1),
+(2, '2022-05-22 14:02:37', 'sdada', '1', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -140,13 +159,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `panitia`
 --
 ALTER TABLE `panitia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ukm`

@@ -4,6 +4,7 @@ include 'connect.php';
 include 'navbar.html';
 
 $nrp = $_SESSION["nrp"];
+
 $stmt = $pdo->query("SELECT * FROM `admin` WHERE `nrp` LIKE '$nrp'");
 if($row = $stmt->fetch()){
     // echo $nrp.' logged in';

@@ -1,6 +1,8 @@
 <?php
     include "connect.php";
 
+    $nrp = "nrp_contoh";
+
     if (isset($_GET["stat"])) {
         if ($_GET["stat"] == 1) {
             echo "<script>alert('Data anda berhasil tersimpan.')</script>";
@@ -12,8 +14,8 @@
         $contact_panitia = $_POST["kontak"];
         $deskripsi_panitia = $_POST["deskripsi"];
 
-        $sql_insert = "INSERT INTO `panitia`(`id`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
-        VALUES (NULL, '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
+        $sql_insert = "INSERT INTO `panitia`(`id`,`nrp`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
+        VALUES (NULL,'$nrp', '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
         $pdo->exec($sql_insert);
 
         header("Location: hal1.php?stat=1");
