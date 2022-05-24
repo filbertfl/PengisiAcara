@@ -1,7 +1,6 @@
 <?php 
 include "connect.php";
 
-
 // $sqlhistory = "INSERT INTO `admin` (`id`, `username`, `password`, `id_ukm`) VALUES (NULL,'a1','a2',1)";
 // $stmthistory = $pdo->prepare($sqlhistory);
 // $pdo->prepare($sqlhistory);
@@ -9,12 +8,21 @@ include "connect.php";
 
 // HAL 3
 // $id_panitia = $SESSION['id'];
+$nrp = $_SESSION["nrp"];
+$id_ukm = $_GET["id_ukm"];
+echo 'id ukm : '.$id_ukm;
 
-// $id_ukm = $_GET["id_ukm"];
-// echo 'id ukm : '.$id_ukm;
+// $id_panitia = 0;
+// $id_ukm = 2;
 
-$id_panitia = 0;
-$id_ukm = 2;
+// Check apabila yg request itu panitia atau bukan
+$stmt = $pdo->query("SELECT * FROM `panitia` WHERE `nrp` = '$nrp'");
+if($row = $stmt->fetch()){
+    echo '<br> NRP Panitia : '.$row['nrp'];
+    echo '<br> Nama Panitia : '.$row['nama_kepanitiaan'];
+}else{
+    header('Location: index.php');
+}
 
 if(isset($_POST['submit_button'])){
     $request_info = $_POST['request_info'];

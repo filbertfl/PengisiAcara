@@ -20,6 +20,7 @@
 
         header("Location: hal1.php?stat=1");
     }
+    
 ?>
 
 <!doctype html>

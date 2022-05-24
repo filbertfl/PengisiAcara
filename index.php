@@ -4,12 +4,19 @@ include "connect.php";
 include "navbar.html";
 $_SESSION["nrp"] = "C14200184";
 
-// $sql = "INSERT INTO `ukm`(`id`, `nama`, `deskripsi`, `contact_person`, `foto`) VALUES (NULL,"UKM Dance","Kita bisa menari kok!","filbert05","/img/a.png")";
-// $pdo->exec($sql);
+$nrp = $_SESSION["nrp"];
 
-// $sqlhistory = "INSERT INTO `admin` (`id`, `username`, `password`, `id_ukm`) VALUES (NULL,'a1','a2',1)";
-// $stmthistory = $pdo->prepare($sqlhistory);
-// $stmthistory->execute();
+// Check apabila yg request itu panitia atau bukan
+$stmt = $pdo->query("SELECT * FROM `panitia` WHERE `nrp` = '$nrp'");
+if($row = $stmt->fetch()){
+    echo '<br><center><h6 style="color:red;" >'
+    .$row['nama_kepanitiaan'].'-'.$row['nrp'].
+    '</h6></center>';
+}else{
+  echo '<br><center><h6 style="color:red;" >!!! Akun ini bukan Kepanitiaan !!!</h6></center>';
+  echo '<center><a href="hal1.php">Daftar Panitia</a></center>';
+}
+
 ?>
 <!doctype html>
 <html lang="en">
