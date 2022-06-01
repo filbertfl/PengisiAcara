@@ -26,7 +26,7 @@
             }
         }
 
-        if ($updated == true) {
+        if ($updated == false) {
             $sql_insert = "INSERT INTO `panitia`(`id`,`nrp`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
             VALUES (NULL,'$nrp', '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
             $pdo->exec($sql_insert);    
