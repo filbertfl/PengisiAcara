@@ -14,9 +14,23 @@
         $contact_panitia = $_POST["kontak"];
         $deskripsi_panitia = $_POST["deskripsi"];
 
-        $sql_insert = "INSERT INTO `panitia`(`id`,`nrp`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
-        VALUES (NULL,'$nrp', '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
-        $pdo->exec($sql_insert);
+        $updated = false;
+
+        $stmt = $pdo->query("SELECT * FROM `panitia`");
+        while ($row = $stmt->fetch()) {
+            if ($row["nrp"] == $nrp && $row["nama_kepanitiaan" == $nama_panitia]) {
+                $sql_update = "UPDATE `panitia` SET `deskripsi_panitia`='$deskripsi_panitia',`contact_person`='$contact_panitia' WHERE `nrp` = '$nrp' AND `nama_kepanitiaan` = '$nama_panitia'";
+                $pdo->exec($sql_update);
+                
+                $updated = true;
+            }
+        }
+
+        if ($updated == true) {
+            $sql_insert = "INSERT INTO `panitia`(`id`,`nrp`, `nama_kepanitiaan`, `deskripsi_panitia`, `contact_person`) 
+            VALUES (NULL,'$nrp', '$nama_panitia', '$deskripsi_panitia', '$contact_panitia')";
+            $pdo->exec($sql_insert);    
+        }
 
         header("Location: hal1.php?stat=1");
     }
