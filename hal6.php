@@ -23,27 +23,41 @@ if($row = $stmt->fetch()){
 }
 
 if(isset($_POST['submit'])){
+    
+    $date = date("d-M-Y H-i-s");
+    
     $file_batch='';
     $countfiles = count($_FILES['file']['name']);
-    for($i=0;$i<$countfiles;$i++){
-        $filename = $_FILES['file']['name'][$i];
-        move_uploaded_file($_FILES['file']['tmp_name'][$i],'upload/'.$filename);
-        $file_batch .= ';upload/'.$filename;
+    if ($countfiles != 1){
+        for($i=0;$i<$countfiles;$i++){
+            $filename = $_FILES['file']['name'][$i];
+            move_uploaded_file($_FILES['file']['tmp_name'][$i],'upload/'.$date.'-'.$filename);
+            $file_batch .= ';upload/'.$date.'-'.$filename;
+        }
+        $sql1 = "UPDATE `ukm` SET `foto`='$file_batch' WHERE  `id`=$id_ukm";
+        $pdo->query($sql1);
     }
-
+    
     // $ukm = $_POST['ukm'];
     $deskripsi = $_POST['deskripsi'];
     $kontak = $_POST['kontak'];
 
     // $logo = $_POST['logo'];
-    $filename = $_FILES['logo']['name'];
-    move_uploaded_file($_FILES['logo']['tmp_name'],'upload/'.$filename); 
-    $logo = 'upload/'.$filename;
+    if(($_FILES['logo']['name'])!=""){
+        $filename = $_FILES['logo']['name'];
+        move_uploaded_file($_FILES['logo']['tmp_name'],'upload/'.$date.'-'.$filename); 
+        $logo = 'upload/'.$date.'-'.$filename;
+
+        $sql2 = "UPDATE `ukm` SET `logo`='$logo' WHERE  `id`=$id_ukm";
+        $pdo->query($sql2);
+    }
+    
 
     // $sql = "INSERT INTO `ukm`(`id`, `nama`, `deskripsi`, `contact_person`, `foto`, `logo`) VALUES (NULL,'$ukm','$deskripsi','$kontak','$file_batch','$logo')";
 
-    $sql = "UPDATE `ukm` SET `deskripsi`='$deskripsi',`contact_person`='$kontak',`foto`='$file_batch',`logo`='$logo' WHERE  `id`=$id_ukm";
+    $sql = "UPDATE `ukm` SET `deskripsi`='$deskripsi',`contact_person`='$kontak' WHERE `id`=$id_ukm";
     $pdo->query($sql);
+
 }
 ?>
 <html lang="en">
@@ -96,12 +110,13 @@ if(isset($_POST['submit'])){
 
             <div class="row">
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label">Foto</label>
-                    <input class="form-control" type="file" name="file[]" id="file" multiple Required>
+                    <label class="form-label">Foto dan Video</label>
+                    <input class="form-control" type="file" name="file[]" id="file" multiple>
+                    <center><h6 style="color:red; font-size:14px;">Video harus format .mp4 <br> Tidak boleh ada tanda "." dan ";" pada nama File!</h6></center>
                 </div>
                 <div class="mb-3 col-12 col-md-6">
                     <label class="form-label">Logo UKM</label>
-                    <input name="logo" class="form-control" type="file" Required>
+                    <input name="logo" class="form-control" type="file">
                 </div>
             </div>
 
