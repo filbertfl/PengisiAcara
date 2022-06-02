@@ -48,6 +48,10 @@ if(isset($_POST['submit_button'])){
     <title>Request Pengisi Acara!</title>
     <style>
 
+        body{
+            line-height: 0;
+        }
+        
       .container{
         margin-top: 10px;
         margin-left: 10px;
