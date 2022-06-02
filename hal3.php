@@ -7,7 +7,7 @@ include "connect.php";
 // $stmthistory->execute([$_POST['nama_lengkap'], $_POST['email_peserta'], $_POST['hp_peserta'], $_POST['asal_instansi']]);
 
 // HAL 3
-// $id_panitia = $SESSION['id'];
+$id_panitia = $SESSION['id'];
 $nrp = $_SESSION["nrp"];
 $id_ukm = $_GET["id_ukm"];
 echo 'id ukm : '.$id_ukm;
@@ -26,10 +26,9 @@ if($row = $stmt->fetch()){
 
 if(isset($_POST['submit_button'])){
     $request_info = $_POST['request_info'];
-    $link_drive = $_POST['link_drive'];
     $date = $_POST['date'];
     echo "success";
-    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'date','$request_info',0,$id_ukm,$id_panitia)";
+    $sql = "INSERT INTO `request`(`id`, `date_time`, `request_info`, `status`, `id_ukm`, `id_panitia`) VALUES (NULL,'$date','$request_info',0,$id_ukm,$id_panitia)";
     $pdo->exec($sql);
 }
 
@@ -92,10 +91,10 @@ if(isset($_POST['submit_button'])){
             <div class="form-row">
                 <div class="form-group">
                     <label class="control-label requiredField" for="date">
-                    Tanggal Acara
+                    Tanggal Acara (Tahun/Bulan/Tanggal)
                     </label>
                     <div class="input-group">
-                      <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                      <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text"/>
                     </div>
                 </div>
             </div>
@@ -128,12 +127,13 @@ if(isset($_POST['submit_button'])){
             var date_input=$('input[name="date"]'); //our date input has the name "date"
             var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'yyyy/mm/dd',
                 container: container,
                 todayHighlight: true,
                 autoclose: true,
             })
         })
+
     </script>
   </body>
 </html>

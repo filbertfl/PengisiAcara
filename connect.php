@@ -1,5 +1,5 @@
 <?php
-    $host = '127.0.0.1';
+    $host = 'localhost:3307';
     $db = 'beminter_pengisi_acara';
     $user = 'root';
     $pass = '';
